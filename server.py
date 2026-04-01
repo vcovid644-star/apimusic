@@ -282,6 +282,7 @@ def login():
 @auth_required
 def search():
     query = request.args.get("q", "")
+
     if not query:
         return jsonify([])
 
@@ -297,15 +298,18 @@ def search():
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            result = ydl.extract_info(f"ytsearch10:{query}", download=False)
+            result = ydl.extract_info(
+                f"ytsearch10:{query}",
+                download=False
+            )
 
         songs = []
         for e in result.get("entries", []):
             songs.append({
-                "title":     e.get("title"),
-                "id":        e.get("id"),
+                "title": e.get("title"),
+                "id": e.get("id"),
                 "thumbnail": (e.get("thumbnails") or [{}])[0].get("url"),
-                "duration":  e.get("duration"),
+                "duration": e.get("duration"),
             })
 
         return jsonify(songs)
@@ -326,8 +330,13 @@ def play():
         "format": "bestaudio/best",
         "quiet": True,
         "noplaylist": True,
-        "js_runtime": "node"
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["web"]
             }
+        },
+        "http_headers": {
+            "User-Agent": "Mozilla/5.0"
         }
     }
 
