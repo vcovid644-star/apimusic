@@ -3,4 +3,4 @@ flask-cors
 yt-dlp
 gunicorn
 PyJWT
-dotenv
+python-dotenv
