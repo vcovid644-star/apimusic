@@ -326,9 +326,7 @@ def play():
         "format": "bestaudio/best",
         "quiet": True,
         "noplaylist": True,
-        "extractor_args": {
-            "youtube": {
-                "player_client": ["web"]
+        "js_runtime": "node"
             }
         }
     }
