@@ -330,6 +330,7 @@ def play():
         "format": "bestaudio/best",
         "quiet": True,
         "noplaylist": True,
+        "cookiefile": "cookies.txt",
         "extractor_args": {
             "youtube": {
                 "player_client": ["web"]
