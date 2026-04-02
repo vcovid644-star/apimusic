@@ -333,7 +333,7 @@ def play():
         "cookiefile": "cookies.txt",
         "extractor_args": {
             "youtube": {
-                "player_client": ["web"]
+                "player_client": ["android", "web"]
             }
         },
         "http_headers": {
